@@ -8,10 +8,10 @@ import random
 from corpwechatbot.app import AppMsgSender
 from bs4 import BeautifulSoup
 
-serverchan_key = os.environ["SERVERCHAN_KEY"]
-corp_id        = os.environ["CORP_ID"]
-corp_secret    = os.environ["CORP_SECRET"]
-agent_id       = os.environ["AGENT_ID"]
+serverchan_key    = os.environ["SERVERCHAN_KEY"]
+wecom_corp_id     = os.environ["WECOM_CORP_ID"]
+wecom_corp_secret = os.environ["WECOM_CORP_SECRET"]
+wecom_agent_id    = os.environ["WECOM_AGENT_ID"]
 
 if __name__ == '__main__':
     # 获取文章列表
@@ -36,7 +36,8 @@ if __name__ == '__main__':
     req.encoding = 'gbk'
     html = req.text
     bf = BeautifulSoup(html, 'html.parser')
-    html = bf.find_all('table', style='table-layout:fixed;word-break:break-all;', class_='ke-zeroborder')[0]
+    html = bf.find_all(
+        'table', style='table-layout:fixed;word-break:break-all;', class_='ke-zeroborder')[0]
 
     # 随机选择一张图片作为文章封面
     img_list = bf.find_all('img')
@@ -51,11 +52,11 @@ if __name__ == '__main__':
         f.write(r.content)
 
     # 推送到企业微信
-    if corp_id != "" and corp_secret != "" and agent_id != "":
+    if wecom_corp_id != "" and wecom_corp_secret != "" and wecom_agent_id != "":
         # 配置企业微信推送密钥
-        app = AppMsgSender(corpid=corp_id,          # 你的企业id
-                           corpsecret=corp_secret,  # 你的应用凭证密钥
-                           agentid=agent_id)
+        app = AppMsgSender(corpid=wecom_corp_id,          # 你的企业ID
+                           corpsecret=wecom_corp_secret,  # 你的应用凭证密钥
+                           agentid=wecom_agent_id)        # 你的应用ID
 
         # 推送到企业微信
         app.send_mpnews(title=title.get('title'),
@@ -66,8 +67,8 @@ if __name__ == '__main__':
                         digest='每天一图卦，让我们更清楚地了解这个世界')
 
     # 推送到Server酱
-    if serverchan_key != "":
-        # TODO
+    # if serverchan_key != "":
+    #     # TODO
 
     # 删除封面
     os.remove('cover_img')

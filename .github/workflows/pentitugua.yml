@@ -24,8 +24,8 @@ jobs:
 
     - name: Push Pentitugua
       env: 
-        SERVERCHAN_KEY: ${{secrets.SERVERCHAN_KEY}}
-        CORP_ID       : ${{secrets.CORP_ID}}
-        CORP_SECRET   : ${{secrets.CORP_SECRET}}
-        AGENT_ID      : ${{secrets.AGENT_ID}}
+        SERVERCHAN_KEY   : ${{secrets.SERVERCHAN_KEY}}
+        WECOM_CORP_ID    : ${{secrets.WECOM_CORP_ID}}
+        WECOM_CORP_SECRET: ${{secrets.WECOM_CORP_SECRET}}
+        WECOM_AGENT_ID   : ${{secrets.WECOM_AGENT_ID}}
       run: python pentitugua.py
