@@ -8,7 +8,6 @@ import random
 from corpwechatbot.app import AppMsgSender
 from bs4 import BeautifulSoup
 
-serverchan_key    = os.environ["SERVERCHAN_KEY"]
 wecom_corp_id     = os.environ["WECOM_CORP_ID"]
 wecom_corp_secret = os.environ["WECOM_CORP_SECRET"]
 wecom_agent_id    = os.environ["WECOM_AGENT_ID"]
@@ -65,10 +64,6 @@ if __name__ == '__main__':
                         content_source_url=url,
                         author='铂程斋',
                         digest='每天一图卦，让我们更清楚地了解这个世界')
-
-    # 推送到Server酱
-    # if serverchan_key != "":
-    #     # TODO
 
     # 删除封面
     os.remove('cover_img')
