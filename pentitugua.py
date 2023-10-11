@@ -13,7 +13,7 @@ wecom_corp_secret = os.environ["WECOM_CORP_SECRET"]
 wecom_agent_id    = os.environ["WECOM_AGENT_ID"]
 
 if __name__ == '__main__':
-    # 获取文章列表
+    # 获取文章列表 - ok
     # req = requests.get('https://www.dapenti.com/blog/blog.asp?subjectid=70&name=xilei')
     req = requests.get('https://www.dapenti.com/blog/index.asp')
     req.encoding = 'gbk'
